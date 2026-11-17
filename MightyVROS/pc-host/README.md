@@ -1,0 +1,29 @@
+> **New:** a low-RAM Windows installer (no browser tab) lives in `../pc-host-app`. This older Chrome-based host is kept for audio and for macOS/Linux.
+
+# MightyVR PC host
+
+Streams your PC screen (and audio) to the MightyVR **PC Stream** app and lets the headset move the mouse, click, scroll and type.
+This is how you get a full browser (YouTube etc.) in VR: run Chrome on the PC, control it from the headset.
+
+## Setup (once)
+1. Install Python 3 and run `pip install pyautogui`.
+   (macOS: allow Terminal/Python under System Settings > Privacy > Accessibility and Screen Recording.)
+
+## Every time
+1. In this folder run `python host.py`, then open **http://localhost:8765** in Chrome or Edge.
+2. Pick resolution/bitrate (720p / 4 Mbps suits the iPhone 7), click **Share my screen**, choose **Entire Screen** (your main monitor)
+   and tick **Share system audio**. Note the 6-character code.
+3. On the phone start screen type the code, tap **Enter VR**, gaze at **PC Stream**.
+4. Click **Allow** on the PC page when the headset asks. Open Chrome on the PC and go to YouTube.
+
+## Using it in VR
+- Move your head: the PC mouse follows your gaze. Hold still ~1 s: the ring shrinks and clicks.
+- Look at the far right edge: top half scrolls up, bottom half scrolls down.
+- **⌨ Keys** shows a gaze keyboard (0.7 s per key) for search boxes.
+
+## Notes
+- Without `host.py` (e.g. opening index.html directly) you still get view-only streaming.
+- Only the approved headset can send input, and `host.py` listens on 127.0.0.1 only.
+- Mouse mapping assumes you share your main monitor.
+- Needs internet for PeerJS pairing; strict NATs without TURN may fail.
+
